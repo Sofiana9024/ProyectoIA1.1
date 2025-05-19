@@ -1,0 +1,36 @@
+G:\Mi unidad\OCTAVO SEMESTRE\IA\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.fsproj.AssemblyReference.cache
+G:\Mi unidad\OCTAVO SEMESTRE\IA\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.AssemblyInfoInputs.cache
+G:\Mi unidad\OCTAVO SEMESTRE\IA\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.AssemblyInfo.fs
+G:\Mi unidad\OCTAVO SEMESTRE\IA\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.fsproj.CoreCompileInputs.cache
+G:\Mi unidad\OCTAVO SEMESTRE\IA\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.dll
+G:\Mi unidad\OCTAVO SEMESTRE\IA\P1.1\ProyectoIA1.1\obj\Debug\net9.0\refint\ProyectoIA1.1.dll
+G:\Mi unidad\OCTAVO SEMESTRE\IA\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.pdb
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\ProyectoIA1.1.exe
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\ProyectoIA1.1.deps.json
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\ProyectoIA1.1.runtimeconfig.json
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\ProyectoIA1.1.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\ProyectoIA1.1.pdb
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\FSharp.Core.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\cs\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\de\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\es\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\fr\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\it\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\ja\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\ko\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\pl\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\pt-BR\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\ru\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\tr\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\zh-Hans\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\bin\Debug\net9.0\zh-Hant\FSharp.Core.resources.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.fsproj.AssemblyReference.cache
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.AssemblyInfoInputs.cache
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.AssemblyInfo.fs
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.fsproj.CoreCompileInputs.cache
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\Proyecto.2A71FE03.Up2Date
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\refint\ProyectoIA1.1.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.pdb
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.genruntimeconfig.cache
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ref\ProyectoIA1.1.dll
