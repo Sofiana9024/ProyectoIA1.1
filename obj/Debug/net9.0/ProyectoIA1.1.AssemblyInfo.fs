@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("ProyectoIA1.1")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f7903a3d97c87e0bd5bb9996d3b6c00ce5f6992")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("ProyectoIA1.1")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("ProyectoIA1.1")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

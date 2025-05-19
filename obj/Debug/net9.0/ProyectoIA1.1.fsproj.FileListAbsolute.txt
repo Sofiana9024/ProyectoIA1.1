@@ -34,3 +34,4 @@ C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\refint\ProyectoIA1.
 C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.pdb
 C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.genruntimeconfig.cache
 C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ref\ProyectoIA1.1.dll
+C:\Users\sofia\Documents\P1.1\ProyectoIA1.1\obj\Debug\net9.0\ProyectoIA1.1.sourcelink.json
