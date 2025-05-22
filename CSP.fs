@@ -102,7 +102,7 @@ module CSP =
                                     else None) dom)
                      | _ -> [])
 
-    let backtracking (csp : csp<'variable,'valor>) =
+    let public backtracking (csp : csp<'variable,'valor>) =
         let problema = 
             {inicio = inicio csp
              meta = meta

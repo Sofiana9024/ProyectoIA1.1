@@ -1,63 +1,44 @@
 module SudokuCSP
-open Capitulo3
-open Busqueda
+
 open CSP
+open SudokuUtils
 
-type Pos = int * int  // Una posición en el tablero: (fila, columna)
+let construirSudokuCSP (tabla: int[,]) =
+    let todasLasPosiciones =
+        [ for fila in 0 .. 8 do for col in 0 .. 8 -> (fila, col) ]
 
-// Dominio para Sudoku 9x9
-let valores = [1 .. 9]
+    let dominioPorDefecto = [1..9]
 
-// Genera todas las variables del tablero
-let todasLasPosiciones : Pos list =
-    [ for fila in 0 .. 8 do
-        for col in 0 .. 8 -> (fila, col) ]
+    let dominiosMap =
+        todasLasPosiciones
+        |> List.map (fun (fila, col) ->
+            let valor = tabla.[fila, col]
+            if valor = 0 then ((fila, col), dominioPorDefecto)
+            else ((fila, col), [valor])
+        )
+        |> Map.ofList
 
-// Función para obtener las restricciones binarias de Sudoku
-let restriccionesSudoku : (Pos * Pos -> bool) list =
-    let distinta (x: int) (y: int) = x <> y
+    let dominiosLista : int list list =
+        todasLasPosiciones
+        |> List.map (fun pos ->
+            match Map.tryFind pos dominiosMap with
+            | Some valores -> valores
+            | None -> []
+        )
 
-    let mismaFila (x1, y1) (x2, y2) = x1 = x2 && y1 <> y2
-    let mismaCol (x1, y1) (x2, y2) = y1 = y2 && x1 <> x2
-    let mismoCuadro (x1, y1) (x2, y2) =
-        (x1 / 3 = x2 / 3) && (y1 / 3 = y2 / 3) && (x1, y1) <> (x2, y2)
-
-    let vecinos (v1: Pos) (v2: Pos) =
-        (mismaFila v1 v2 || mismaCol v1 v2 || mismoCuadro v1 v2)
-
-    // Devuelve restricciones binarias: si son vecinos, deben ser distintos
-    [ fun v1 v2 -> not (vecinos v1 v2) || distinta ]
-    |> List.map (fun cond -> fun v1 v2 -> fun val1 val2 -> cond v1 v2 val1 val2)
-
-// Construcción del CSP a partir de un tablero inicial (lista de listas)
-let construirSudokuCSP (tablero: int list list) : CSP<Pos, int> =
-    let dominio pos =
-        match tablero.[fst pos].[snd pos] with
-        | 0 -> valores // Casilla vacía
-        | fijo -> [fijo] // Casilla prellenada
-
-    let dominios = [ for v in todasLasPosiciones -> (v, dominio v) ]
-
-    // Generar todas las restricciones binarias para cada par de variables
     let restricciones =
-        [ for v1 in todasLasPosiciones do
-            for v2 in todasLasPosiciones do
-                if v1 <> v2 && (
-                    let (x1, y1) = v1
-                    let (x2, y2) = v2
-                    (x1 = x2 || y1 = y2 || (x1 / 3 = x2 / 3 && y1 / 3 = y2 / 3))
-                )
-                then
-                    yield (v1, v2, fun val1 val2 -> val1 <> val2)
+        [ for v in todasLasPosiciones do
+            for v2 in vecinos v do
+                if v < v2 then
+                    CSP.Binaria((v, v2), fun estado ->
+                        match Map.tryFind v estado, Map.tryFind v2 estado with
+                        | Some [x], Some [y] -> x <> y
+                        | _ -> true
+                    )
         ]
 
-    let soloDominios = List.map snd dominios  // tipo: int list list
-
-    let sudokuCSP = {
-        variables = todasLasPosiciones
-        dominios = soloDominios
-        restricciones = restricciones
+    {
+        CSP.variables = todasLasPosiciones
+        CSP.dominios = dominiosLista
+        CSP.restricciones = restricciones
     }
-
-    
-
