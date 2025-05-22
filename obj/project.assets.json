@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net9.0": {
-      "FSharp.Core/9.0.300": {
+      "FSharp.Core/9.0.101": {
         "type": "package",
         "compile": {
           "lib/netstandard2.1/FSharp.Core.dll": {
@@ -59,15 +59,15 @@
     }
   },
   "libraries": {
-    "FSharp.Core/9.0.300": {
-      "sha512": "TVt2J7RCE1KCS2IaONF+p8/KIZ1eHNbW+7qmKF6hGoD4tXl+o07ja1mPtFjMqRa5uHMFaTrGTPn/m945WnDLiQ==",
+    "FSharp.Core/9.0.101": {
+      "sha512": "3/YR1SDWFA+Ojx9HiBwND+0UR8ZWoeZfkhD0DWAPCDdr/YI+CyFkArmMGzGSyPXeYtjG0sy0emzfyNwjt7zhig==",
       "type": "package",
-      "path": "fsharp.core/9.0.300",
+      "path": "fsharp.core/9.0.101",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "fsharp.core.9.0.300.nupkg.sha512",
+        "fsharp.core.9.0.101.nupkg.sha512",
         "fsharp.core.nuspec",
         "lib/netstandard2.0/FSharp.Core.dll",
         "lib/netstandard2.0/FSharp.Core.xml",
@@ -104,29 +104,29 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "FSharp.Core >= 9.0.300"
+      "FSharp.Core >= 9.0.101"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sofia\\.nuget\\packages\\": {}
+    "C:\\Users\\monse\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sofia\\Documents\\P1.1\\ProyectoIA1.1\\ProyectoIA1.1.fsproj",
+      "projectUniqueName": "C:\\Users\\monse\\OneDrive\\Documentos\\GitHub\\ProyectoIA1.1\\ProyectoIA1.1.fsproj",
       "projectName": "ProyectoIA1.1",
-      "projectPath": "C:\\Users\\sofia\\Documents\\P1.1\\ProyectoIA1.1\\ProyectoIA1.1.fsproj",
-      "packagesPath": "C:\\Users\\sofia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\sofia\\Documents\\P1.1\\ProyectoIA1.1\\obj\\",
+      "projectPath": "C:\\Users\\monse\\OneDrive\\Documentos\\GitHub\\ProyectoIA1.1\\ProyectoIA1.1.fsproj",
+      "packagesPath": "C:\\Users\\monse\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\monse\\OneDrive\\Documentos\\GitHub\\ProyectoIA1.1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sofia\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\monse\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "C:\\Program Files\\dotnet\\sdk\\9.0.300\\FSharp\\library-packs": {},
+        "C:\\Program Files\\dotnet\\sdk\\9.0.102\\FSharp\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -140,7 +140,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -149,7 +149,7 @@
           "FSharp.Core": {
             "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
             "target": "Package",
-            "version": "[9.0.300, )",
+            "version": "[9.0.101, )",
             "generatePathProperty": true
           }
         },
@@ -169,7 +169,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
