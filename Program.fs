@@ -1,139 +1,137 @@
-﻿open System
-open System.Collections.Generic
+﻿namespace CSP
+open Capitulo3
+open Busqueda
+open System
+open CSP
 
-// Imprime el tablero de Sudoku
-let printTabla (tabla: int[,]) =
-    for fila in 0 .. 8 do
-        for col in 0 .. 8 do
-            let valor = tabla.[fila, col]
-            if valor = 0 then
-                printf ". "
-            else
-                printf "%d " valor
+module Sudoku =
+
+    type Variable = int * int // (row, col)
+    type Value = int
+
+    // Define the Sudoku problem as a CSP
+    let createSudokuCSP (initialBoard: int[,]) =
+        // Variables are all empty cells (where value is 0)
+        let variables = 
+            [ for row in 0..8 do 
+                for col in 0..8 do 
+                    if initialBoard.[row,col] = 0 then 
+                        yield (row,col) ]
+
+        // Domains for empty cells (1-9), fixed cells get their fixed value
+        let dominios = 
+            variables |> List.map (fun _ -> [1..9])
+
+        // Get all peers (cells in same row, column, or box)
+        let getPeers (row, col) =
+            let sameRow = [ for c in 0..8 do if c <> col then yield (row, c) ]
+            let sameCol = [ for r in 0..8 do if r <> row then yield (r, col) ]
+            let startRow = row / 3 * 3
+            let startCol = col / 3 * 3
+            let sameBox = 
+                [ for r in startRow..startRow+2 do
+                    for c in startCol..startCol+2 do
+                        if (r,c) <> (row,col) then yield (r,c) ]
+            sameRow @ sameCol @ sameBox |> List.distinct
+
+        // Create constraints
+        let restricciones =
+            [ for (row, col) in variables do
+                // Get all peers that are either fixed or variables
+                for (r, c) in getPeers (row, col) do
+                    if initialBoard.[r,c] <> 0 then
+                        // Constraint with fixed cell
+                        yield NAria ([(row,col)], 
+                            (fun estado -> 
+                                List.head estado.[(row,col)] <> initialBoard.[r,c]))
+                    else
+                        // Constraint with variable cell
+                        yield Binaria (((row,col), (r,c)), 
+                            (fun estado -> 
+                                List.head estado.[(row,col)] <> List.head estado.[(r,c)]))
+            ]
+
+        { variables = variables
+          dominios = dominios
+          restricciones = restricciones }
+
+    // Print the Sudoku board
+    let printBoard (board: int[,]) =
+        for row in 0..8 do
+            for col in 0..8 do
+                let value = board.[row,col]
+                if value = 0 then printf ". "
+                else printf "%d " value
+            printfn ""
         printfn ""
-    printfn ""
 
-// Obtiene la lista de vecinos (restricciones) para una celda
-let vecinos (fila, col) =
-    let filaV = [ for c in 0 .. 8 -> (fila, c) ]
-    let colV = [ for r in 0 .. 8 -> (r, col) ]
-    let startR = fila / 3 * 3
-    let startC = col / 3 * 3
-    let subV = [ for r in startR .. startR + 2 do for c in startC .. startC + 2 -> (r, c) ]
-    Set.ofList (filaV @ colV @ subV) |> Set.remove (fila, col)
+    // Convert solution (Map of assignments) back to a 2D array
+    let solutionToBoard (initialBoard: int[,]) (solution: Map<Variable, Value list>) =
+        let board = Array2D.copy initialBoard
+        for KeyValue((row,col), values) in solution do
+            board.[row,col] <- List.head values
+        board
 
-// Inicializa dominios para todas las celdas
-let initDominios (tabla: int[,]) =
-    let dominios = Dictionary<(int * int), Set<int>>()
-    for fila in 0 .. 8 do
-        for col in 0 .. 8 do
-            if tabla.[fila, col] = 0 then
-                dominios.[(fila, col)] <- Set.ofList [1..9]
-    dominios
-
-// Asigna dominios válidos reducidos según valores vecinos
-let reducirDominios (tabla: int[,]) (dominios: Dictionary<_,_>) =
-    for kvp in dominios do
-        let (fila, col) = kvp.Key
-        let posibles = kvp.Value
-        let usados =
-            vecinos (fila, col)
-            |> Seq.choose (fun (f, c) -> if tabla.[f, c] <> 0 then Some tabla.[f, c] else None)
-            |> Set.ofSeq
-        dominios.[(fila, col)] <- Set.difference posibles usados
-
-// Obtiene la celda con menor dominio (heurística MRV)
-let seleccionarVariable (dominios: Dictionary<_,_>) =
-    dominios
-    |> Seq.minBy (fun kvp -> Set.count kvp.Value)
-    |> fun kvp -> kvp.Key, kvp.Value
-
-
-// Copia el diccionario de dominios
-let copiarDominios (dom: Dictionary<(int * int), Set<int>>) =
-    let nuevo = Dictionary<(int * int), Set<int>>()
-    for kvp in dom do
-        nuevo.Add(kvp.Key, kvp.Value)
-    nuevo
-
-// Algoritmo CSP Backtracking con Forward Checking
-let rec resolverCSP (tabla: int[,]) (dominios: Dictionary<_,_>) =
-    if dominios.Count = 0 then true
-    else
-        let (fila, col), valores = seleccionarVariable dominios
-        valores
-        |> Seq.exists (fun valor ->
-            let copiaTabla = tabla.Clone() :?> int[,]
-            copiaTabla.[fila, col] <- valor
-
-            let nuevosDominios = copiarDominios dominios
-            nuevosDominios.Remove((fila, col)) |> ignore
-
-            let mutable esValido = true
-
-            for (f, c) in vecinos (fila, col) do
-                if nuevosDominios.ContainsKey((f, c)) then
-                    nuevosDominios.[(f, c)] <- Set.remove valor nuevosDominios.[(f, c)]
-                    if nuevosDominios.[(f, c)].IsEmpty then
-                        esValido <- false
-
-            if esValido && resolverCSP copiaTabla nuevosDominios then
-                // Copia solución
-                for f in 0 .. 8 do
-                    for c in 0 .. 8 do
-                        tabla.[f, c] <- copiaTabla.[f, c]
-                true
-            else false
-        )
-
-// Función principal
-[<EntryPoint>]
-let main argv =
+    // Example Sudoku boards
     let tabla1 = array2D [
-        [6; 0; 8; 7; 0; 2; 1; 0; 0];
-        [4; 0; 0; 0; 1; 0; 0; 0; 2];
-        [0; 2; 5; 4; 0; 0; 0; 0; 0];
-        [7; 0; 1; 0; 8; 0; 4; 0; 5];
-        [0; 8; 0; 0; 0; 0; 0; 7; 0];
-        [5; 0; 9; 0; 6; 0; 3; 0; 1];
-        [0; 0; 0; 0; 0; 6; 7; 5; 0];
-        [2; 0; 0; 0; 9; 0; 0; 0; 8];
+        [6; 0; 8; 7; 0; 2; 1; 0; 0]
+        [4; 0; 0; 0; 1; 0; 0; 0; 2]
+        [0; 2; 5; 4; 0; 0; 0; 0; 0]
+        [7; 0; 1; 0; 8; 0; 4; 0; 5]
+        [0; 8; 0; 0; 0; 0; 0; 7; 0]
+        [5; 0; 9; 0; 6; 0; 3; 0; 1]
+        [0; 0; 0; 0; 0; 6; 7; 5; 0]
+        [2; 0; 0; 0; 9; 0; 0; 0; 8]
         [0; 0; 6; 8; 0; 5; 2; 0; 3]
+
     ]
 
     let tabla2 = array2D [
-        [0; 7; 0; 0; 4; 2; 0; 0; 0];
-        [0; 0; 0; 0; 0; 8; 6; 1; 0];
-        [3; 9; 0; 0; 0; 0; 0; 0; 7];
-        [0; 0; 0; 0; 0; 4; 0; 0; 9];
-        [0; 0; 3; 0; 0; 0; 7; 0; 0];
-        [5; 0; 0; 1; 0; 0; 0; 0; 0];
-        [8; 0; 0; 0; 0; 0; 0; 7; 6];
-        [0; 5; 4; 8; 0; 0; 0; 0; 0];
+        [0; 7; 0; 0; 4; 2; 0; 0; 0]
+        [0; 0; 0; 0; 0; 8; 6; 1; 0]
+        [3; 9; 0; 0; 0; 0; 0; 0; 7]
+        [0; 0; 0; 0; 0; 4; 0; 0; 9]
+        [0; 0; 3; 0; 0; 0; 7; 0; 0]
+        [5; 0; 0; 1; 0; 0; 0; 0; 0]
+        [8; 0; 0; 0; 0; 0; 0; 7; 6]
+        [0; 5; 4; 8; 0; 0; 0; 0; 0]
         [0; 0; 0; 6; 1; 0; 0; 5; 0]
     ]
 
-    printfn "Seleccione una opción de sudoku:\n1. Ejemplo 1\n2. Ejemplo 2"
-    let choice = Console.ReadLine()
+    [<EntryPoint>]
+    let main argv =
+        printfn "Seleccione una opción de sudoku:\n1. Ejemplo 1\n2. Ejemplo 2"
+        let choice = Console.ReadLine()
 
-    let tabla =
-        match choice with
-        | "1" -> tabla1
-        | "2" -> tabla2
-        | _ -> 
-            printfn "Opción inválida, se usará el 1"
-            tabla1
+        let tabla =
+            match choice with
+            | "1" -> tabla1
+            | "2" -> tabla2
+            | _ -> 
+                printfn "Opción inválida, se usará el 1"
+                tabla1
 
-    printfn "\nSudoku sin resolver:"
-    printTabla tabla
+        printfn "\nSudoku sin resolver:"
+        printBoard tabla
 
-    let dominios = initDominios tabla
-    reducirDominios tabla dominios
+        // Create CSP
+        let csp = createSudokuCSP tabla
+        printfn "Variables: %d" csp.variables.Length
+        printfn "Restricciones: %d" csp.restricciones.Length
 
-    if resolverCSP tabla dominios then
-        printfn "Sudoku resuelto:"
-        printTabla tabla
-    else
-        printfn "No existe solución :("
-
-    0
+        // Solve with backtracking
+        match CSP.backtracking csp with
+        | (stats, Some solutionNode) ->
+            printfn "Nodos generados: %d" stats.nodos_generados
+            printfn "Nodos procesados: %d" stats.nodos_procesados
+            
+            let solutionState = solutionNode.estado
+            let solvedBoard = solutionToBoard tabla solutionState
+            printfn "\nSudoku resuelto:"
+            printBoard solvedBoard
+            0
+        | (stats, None) ->
+            printfn "Nodos generados: %d" stats.nodos_generados
+            printfn "Nodos procesados: %d" stats.nodos_procesados
+            printfn "No existe solución :("
+            1

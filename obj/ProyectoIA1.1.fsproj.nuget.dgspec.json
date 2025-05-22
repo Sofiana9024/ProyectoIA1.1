@@ -1,26 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\monse\\OneDrive\\Documentos\\GitHub\\ProyectoIA1.1\\ProyectoIA1.1.fsproj": {}
+    "C:\\Users\\sofia\\Documents\\P1.1\\ProyectoIA1.1\\ProyectoIA1.1.fsproj": {}
   },
   "projects": {
-    "C:\\Users\\monse\\OneDrive\\Documentos\\GitHub\\ProyectoIA1.1\\ProyectoIA1.1.fsproj": {
+    "C:\\Users\\sofia\\Documents\\P1.1\\ProyectoIA1.1\\ProyectoIA1.1.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\monse\\OneDrive\\Documentos\\GitHub\\ProyectoIA1.1\\ProyectoIA1.1.fsproj",
+        "projectUniqueName": "C:\\Users\\sofia\\Documents\\P1.1\\ProyectoIA1.1\\ProyectoIA1.1.fsproj",
         "projectName": "ProyectoIA1.1",
-        "projectPath": "C:\\Users\\monse\\OneDrive\\Documentos\\GitHub\\ProyectoIA1.1\\ProyectoIA1.1.fsproj",
-        "packagesPath": "C:\\Users\\monse\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\monse\\OneDrive\\Documentos\\GitHub\\ProyectoIA1.1\\obj\\",
+        "projectPath": "C:\\Users\\sofia\\Documents\\P1.1\\ProyectoIA1.1\\ProyectoIA1.1.fsproj",
+        "packagesPath": "C:\\Users\\sofia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sofia\\Documents\\P1.1\\ProyectoIA1.1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\monse\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\sofia\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\sdk\\9.0.102\\FSharp\\library-packs": {},
+          "C:\\Program Files\\dotnet\\sdk\\9.0.300\\FSharp\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,7 +34,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net9.0": {
@@ -43,7 +43,7 @@
             "FSharp.Core": {
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
-              "version": "[9.0.101, )",
+              "version": "[9.0.300, )",
               "generatePathProperty": true
             }
           },
@@ -63,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

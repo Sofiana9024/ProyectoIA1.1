@@ -12,7 +12,6 @@
     <Compile Include="Capitulo3.fs" />
     <Compile Include="DFS.fs" />
     <Compile Include="CSP.fs" />
-    <Compile Include="SudokuCSP.fs" />
     <Compile Include="Busqueda.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
